@@ -14,14 +14,13 @@ jobs:
     container:
       image: enwaiax/smzdm_bot
       env:
-        ANDROID_COOKIE: ${{ secrets.ANDROID_COOKIE }}
-        SK: ${{ secrets.SK }}
-        PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
-        SC_KEY: ${{ secrets.SC_KEY }}
-        TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        TG_USER_ID: ${{ secrets.TG_USER_ID }}
-        TG_BOT_API: ${{ secrets.TG_BOT_API }}
+        SMZDM_COOKIE: ${{ secrets.ANDROID_COOKIE }}
+        SMZDM_SK: ${{ secrets.SK }}
+        SMZDM_PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+        SMZDM_SC_KEY: ${{ secrets.SC_KEY }}
+        SMZDM_TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        SMZDM_TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        SMZDM_TG_API_BASE: ${{ secrets.TG_BOT_API }}
     steps:
       - name: Working
-        run: |
-          python /smzdm_bot/main.py
+        run: smzdm-bot run
