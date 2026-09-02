@@ -22,5 +22,10 @@ jobs:
         SMZDM_TG_USER_ID: ${{ secrets.TG_USER_ID }}
         SMZDM_TG_API_BASE: ${{ secrets.TG_BOT_API }}
     steps:
+      - name: Diagnose cookie fields
+        run: |
+          echo "cookie field names:"
+          echo "$SMZDM_COOKIE" | tr ';' '\n' | sed 's/^[[:space:]]*//' | sed 's/=.*//' | sort
+          if [ -n "$SMZDM_SK" ]; then echo "SMZDM_SK: set"; else echo "SMZDM_SK: empty"; fi
       - name: Working
         run: smzdm-bot run
