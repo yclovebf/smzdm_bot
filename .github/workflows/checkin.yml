@@ -1,0 +1,26 @@
+name: Check in
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Build image"]
+    types:
+      - completed
+  schedule:
+    - cron: "15 1 * * *"
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    container:
+      image: enwaiax/smzdm_bot
+      env:
+        SMZDM_COOKIE: ${{ secrets.ANDROID_COOKIE }}
+        SMZDM_SK: ${{ secrets.SK }}
+        SMZDM_PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+        SMZDM_SC_KEY: ${{ secrets.SC_KEY }}
+        SMZDM_TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        SMZDM_TG_USER_ID: ${{ secrets.TG_USER_ID }}
+        SMZDM_TG_API_BASE: ${{ secrets.TG_BOT_API }}
+    steps:
+      - name: Working
+        run: smzdm-bot run
